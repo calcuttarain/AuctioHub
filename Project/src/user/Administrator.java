@@ -1,6 +1,6 @@
 package user;
 
-public class Administrator extends User implements Staff{
+class Administrator extends User implements Staff{
     private int experience_years;
     public Administrator(String username, String email, String hashed_password)
     {

@@ -1,6 +1,6 @@
 package user;
 
-public class Manager extends User implements Staff{
+class Manager extends User implements Staff{
     private int experience_years;
     public Manager(String username, String email, String hashed_password)
     {

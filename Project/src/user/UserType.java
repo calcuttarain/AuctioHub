@@ -1,6 +1,6 @@
 package user;
 
-public enum UserType {
+enum UserType {
     ADMIN_USER,
     MANAGER_USER,
     BIDDER_USER
