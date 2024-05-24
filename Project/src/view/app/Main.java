@@ -1,3 +1,5 @@
+package view.app;
+
 import user.AuthentificationService;
 import java.util.Scanner;
 public class Main {
