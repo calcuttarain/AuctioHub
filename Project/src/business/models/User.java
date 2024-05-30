@@ -1,18 +1,39 @@
 package business.models;
 
 public abstract class User{
+    protected int id;
     protected String username;
     protected String email;
     protected String hashed_password;
+    UserType user_type;
 
-    User(String username, String email, String hashed_password) {
+    User(int id, String username, String email, String hashed_password, UserType user_type) {
+        this.id = id;
         this.username = username;
         this.email = email;
         this.hashed_password = hashed_password;
+        this.user_type = user_type;
+    }
+
+    User(String username, String email, String hashed_password, UserType user_type) {
+        this.id = 0;
+        this.username = username;
+        this.email = email;
+        this.hashed_password = hashed_password;
+        this.user_type = user_type;
+    }
+
+    public User() {
+
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public int getId()
+    {
+        return id;
     }
 
     public void setUsername(String username) {
@@ -40,8 +61,8 @@ public abstract class User{
     @Override
     public String toString() {
         return "User details:\n" +
-                "   username:" + getUsername() + '\'' +
-                "   email='" + getEmail() + '\'';
+                "   username: " + getUsername() + '\n' +
+                "   email: " + getEmail() + '\n';
     }
 
     @Override

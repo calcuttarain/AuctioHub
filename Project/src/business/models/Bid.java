@@ -4,14 +4,25 @@ import java.util.Objects;
 
 public class Bid implements Comparable<Bid> {
     private int id;
-    private Bidder bidder;
+    private int auction_id;
+    private int bidder_id;
     private float startingPrice;
     private float currentPrice;
     private boolean sold;
 
-    public Bid(int id, Bidder bidder, float startingPrice, float currentPrice, boolean sold) {
+    public Bid(int id, int auction_id, int bidder_id, float startingPrice, float currentPrice, boolean sold) {
         this.id = id;
-        this.bidder = bidder;
+        this.auction_id = auction_id;
+        this.bidder_id = bidder_id;
+        this.startingPrice = startingPrice;
+        this.currentPrice = currentPrice;
+        this.sold = sold;
+    }
+
+    public Bid() {
+        this.id = -1;
+        this.auction_id = -1;
+        this.bidder_id = 0;
         this.startingPrice = startingPrice;
         this.currentPrice = currentPrice;
         this.sold = sold;
@@ -21,12 +32,18 @@ public class Bid implements Comparable<Bid> {
         return id;
     }
 
-    public Bidder getBidder() {
-        return bidder;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setBidder(Bidder bidder) {
-        this.bidder = bidder;
+    public int getAuction_id() {return auction_id;}
+
+    public int getBidder_id() {
+        return bidder_id;
+    }
+
+    public void setBidder_id(int bidder_id) {
+        this.bidder_id = bidder_id;
     }
 
     public float getStartingPrice() {
@@ -63,7 +80,6 @@ public class Bid implements Comparable<Bid> {
         return "Bid details:\n" +
                 "   starting price: " + getStartingPrice() + "\n" +
                 "   current price: " + getCurrentPrice() + "\n" +
-                "   current bidder: " + getBidder().getUsername() + "\n" +
                 "   current status: " + sold;
     }
 
@@ -72,21 +88,10 @@ public class Bid implements Comparable<Bid> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bid bid = (Bid) o;
-        return id == bid.id &&
-                Float.compare(bid.startingPrice, startingPrice) == 0 &&
-                Float.compare(bid.currentPrice, currentPrice) == 0 &&
-                sold == bid.sold &&
-                Objects.equals(bidder, bid.bidder);
+        return id == bid.id;
     }
-
     @Override
-    public int hashCode() {
-        return Objects.hash(id, bidder.hashCode(), startingPrice, currentPrice, sold);
-    }
-
-    @Override
-    public int compareTo(Bid otherBid) {
-        return Float.compare(this.currentPrice, otherBid.currentPrice);
+    public int compareTo(Bid other) {
+        return Float.compare(this.currentPrice, other.currentPrice);
     }
 }
-

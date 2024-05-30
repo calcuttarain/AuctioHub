@@ -1,23 +1,22 @@
 package business.models;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 public class Auction implements Comparable<Auction> {
     private int id;
     private String address;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private List<Item> items;
-    private Manager manager;
+    private Date startDate;
+    private Date endDate;
+    private int manager_id;
 
-    public Auction(int id, String address, LocalDate startDate, LocalDate endDate, List<Item> items, Manager manager) {
+    public Auction(int id, String address, Date startDate, Date endDate, int manager_id) {
         this.id = id;
         this.address = address;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.items = items;
-        this.manager = manager;
+        this.manager_id = manager_id;
     }
 
     public int getId() {
@@ -32,45 +31,36 @@ public class Auction implements Comparable<Auction> {
         this.address = address;
     }
 
-    public LocalDate getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public int getManagerId() {
+        return manager_id;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
-    }
-
-    public Manager getManager() {
-        return manager;
-    }
-
-    public void setManager(Manager manager) {
-        this.manager = manager;
+    public void setManagerId(int manager_id) {
+        this.manager_id = manager_id;
     }
 
     @Override
     public String toString() {
         return "Auction details:\n" +
-                "   address: " + getAddress() + '\'' +
-                "   start date: " + getStartDate().toString() + '\'' +
-                "   end date: " + getEndDate().toString() + '\'' +
-                "   manager: " + getManager().getUsername() + '\'';
+                "   address: " + getAddress() + '\n' +
+                "   start date: " + getStartDate().toString() + '\n' +
+                "   end date: " + getEndDate().toString() + '\n';
     }
 
     @Override
@@ -82,14 +72,13 @@ public class Auction implements Comparable<Auction> {
                 Objects.equals(address, auction.address) &&
                 Objects.equals(startDate, auction.startDate) &&
                 Objects.equals(endDate, auction.endDate) &&
-                Objects.equals(items, auction.items) &&
-                Objects.equals(manager, auction.manager);
+                Objects.equals(manager_id, auction.manager_id);
     }
 
     // hashCode method
     @Override
     public int hashCode() {
-        return Objects.hash(id, address, startDate, endDate, items, manager);
+        return Objects.hash(id, address, startDate, endDate, manager_id);
     }
 
     // compareTo method

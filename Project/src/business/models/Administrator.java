@@ -4,9 +4,15 @@ import java.util.Objects;
 
 public class Administrator extends User implements Staff{
     private int experience_years;
-    Administrator(String username, String email, String hashed_password, int experience_years)
+    public Administrator(int id, String username, String email, String hashed_password, int experience_years)
     {
-        super(username, email, hashed_password);
+        super(id, username, email, hashed_password, UserType.ADMIN_USER);
+        this.experience_years = experience_years;
+    }
+
+    public Administrator(String username, String email, String hashed_password, int experience_years)
+    {
+        super(username, email, hashed_password, UserType.ADMIN_USER);
         this.experience_years = experience_years;
     }
 

@@ -5,29 +5,26 @@ import java.util.Objects;
 
 public class Manager extends User implements Staff{
     private int experience_years;
-    private List<Auction> managing_auctions;
-    Manager(String username, String email, String hashed_password, int experience_years, List<Auction> managing_auctions)
+    public Manager(int id, String username, String email, String hashed_password, int experience_years)
     {
-        super(username, email, hashed_password);
+        super(id, username, email, hashed_password, UserType.MANAGER_USER);
         this.experience_years = experience_years;
-        this.managing_auctions = managing_auctions;
     }
 
-    void setExperienceYears(int years)
+    public Manager(String username, String email, String hashed_password, int experience_years)
+    {
+        super(username, email, hashed_password, UserType.MANAGER_USER);
+        this.experience_years = experience_years;
+    }
+
+    public void setExperienceYears(int years)
     {
         this.experience_years = years;
     }
-    int getExperienceYears()
+
+    public int getExperienceYears()
     {
         return this.experience_years;
-    }
-
-    public List<Auction> getManaging_auctions() {
-        return managing_auctions;
-    }
-
-    public void setManaging_auctions(List<Auction> managing_auctions) {
-        this.managing_auctions = managing_auctions;
     }
 
     @Override
@@ -57,6 +54,6 @@ public class Manager extends User implements Staff{
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), experience_years, managing_auctions.hashCode());
+        return Objects.hash(super.hashCode(), experience_years);
     }
 }
